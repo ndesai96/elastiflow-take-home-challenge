@@ -1,6 +1,6 @@
 # Solution
 
-`main.go` provides an example usecase of the `CheckDuplicateIDs` method. This example implements a tree structure from the `tree` package to build a hierarchical graph that represents a company's organizational structure. Once tree representation is built the `CheckDuplicateIDs` function is called to return the shallowest duplicate employee (if any) in said graph.
+`main.go` provides an example usecase of the [CheckDuplicateIDs](tree/search.go) method. This example implements a tree structure from the `tree` package to build a hierarchical graph that represents a company's organizational structure. Once tree representation is built the `CheckDuplicateIDs` function is called to return the shallowest duplicate employee (if any) in said graph.
 
 The example considers two scenarios:
 1. An employee graph with at least one instance of employee duplication
