@@ -19,6 +19,14 @@ type NodeTraversal struct {
 	level int
 }
 
+func (nt *NodeTraversal) GetNode() Node {
+	return nt.node
+}
+
+func (nt *NodeTraversal) GetLevel() int {
+	return nt.level
+}
+
 // Breadth first search (BFS) traversal
 func (t *Tree) Traverse() <-chan NodeTraversal {
 	ch := make(chan NodeTraversal)
