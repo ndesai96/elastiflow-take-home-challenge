@@ -11,7 +11,7 @@ func TestNode_NewNode(t *testing.T) {
 		data withID
 	}{
 		"happy": {
-			data: &testData{id: 1},
+			data: NewData(1),
 		},
 	}
 
@@ -29,8 +29,8 @@ func TestNode_NewNode(t *testing.T) {
 }
 
 func TestNode_AddChildren(t *testing.T) {
-	node2 := NewNode(&testData{id: 2})
-	node3 := NewNode(&testData{id: 3})
+	node2 := NewNode(NewData(2))
+	node3 := NewNode(NewData(3))
 
 	tests := map[string]struct {
 		node             Node
@@ -38,17 +38,17 @@ func TestNode_AddChildren(t *testing.T) {
 		expectedChildren []Node
 	}{
 		"one child": {
-			node:             NewNode(&testData{id: 1}),
+			node:             NewNode(NewData(1)),
 			children:         []Node{node2},
 			expectedChildren: []Node{node2},
 		},
 		"multiple children": {
-			node:             NewNode(&testData{id: 1}),
+			node:             NewNode(NewData(1)),
 			children:         []Node{node2, node3},
 			expectedChildren: []Node{node2, node3},
 		},
 		"nil children": {
-			node:             NewNode(&testData{id: 1}),
+			node:             NewNode(NewData(1)),
 			children:         []Node{},
 			expectedChildren: []Node{},
 		},
@@ -61,12 +61,4 @@ func TestNode_AddChildren(t *testing.T) {
 			assert.Equal(t, tt.expectedChildren, tt.node.GetChildren())
 		})
 	}
-}
-
-type testData struct {
-	id int
-}
-
-func (t *testData) GetID() int {
-	return t.id
 }
