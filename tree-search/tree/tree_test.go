@@ -29,6 +29,39 @@ func TestNode_NewTree(t *testing.T) {
 	}
 }
 
+func TestNode_Traverse(t *testing.T) {
+	tests := map[string]struct {
+		root           Node
+		expectedIDs    []int
+		expectedLevels []int
+	}{
+		"tree_without_duplicate_ids": {
+			root:           buildTestRoot1(),
+			expectedIDs:    []int{1, 2, 3, 4, 5, 6},
+			expectedLevels: []int{0, 1, 1, 2, 2, 2},
+		},
+		"tree_with_duplicate_ids": {
+			root:           buildTestRoot2(),
+			expectedIDs:    []int{3, 6, 2, 5, 3, 4, 1, 6},
+			expectedLevels: []int{0, 1, 2, 2, 2, 3, 3, 4},
+		},
+	}
+
+	for name, tt := range tests {
+		t.Run(name, func(t *testing.T) {
+
+			tree := NewTree(tt.root)
+
+			idx := 0
+			for n := range tree.Traverse() {
+				assert.Equal(t, tt.expectedIDs[idx], n.node.GetID())
+				assert.Equal(t, tt.expectedLevels[idx], n.level)
+				idx++
+			}
+		})
+	}
+}
+
 func buildTestRoot1() Node {
 	node1 := NewNode(&testData{id: 1})
 	node2 := NewNode(&testData{id: 2})
@@ -52,8 +85,8 @@ func buildTestRoot2() Node {
 	node5 := NewNode(&testData{id: 5})
 	node6 := NewNode(&testData{id: 6})
 
-	node3_duplicate := NewNode(&testData{id: 1})
-	node6_duplicate := NewNode(&testData{id: 2})
+	node3_duplicate := NewNode(&testData{id: 3})
+	node6_duplicate := NewNode(&testData{id: 6})
 
 	node3.AddChildren(node6)
 	node6.AddChildren(node2, node5, node3_duplicate)
