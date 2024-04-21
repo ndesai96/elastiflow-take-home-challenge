@@ -7,13 +7,18 @@ import (
 )
 
 func main() {
-	employeeGraph := buildEmployeeGraph()
-	employee, level := tree.CheckDuplicateIDs(employeeGraph)
+	tests := []*tree.Tree{
+		buildEmployeeGraphWithDuplicates(true),
+		buildEmployeeGraphWithDuplicates(false),
+	}
 
-	if employee != nil {
-		fmt.Printf("Employee ID: %d, Level: %d\n", employee.GetID(), level)
-	} else {
-		fmt.Println("No duplicate employee!")
+	for _, employeeGraph := range tests {
+		employee, level := tree.CheckDuplicateIDs(employeeGraph)
+		if employee != nil {
+			fmt.Printf("Employee ID: %d, Level: %d\n", employee.GetID(), level)
+		} else {
+			fmt.Println("No duplicate employee!")
+		}
 	}
 }
 
@@ -25,8 +30,7 @@ func (t *Employee) GetID() int {
 	return t.id
 }
 
-func buildEmployeeGraph() *tree.Tree {
-
+func buildEmployeeGraphWithDuplicates(withDuplicates bool) *tree.Tree {
 	ceo := tree.NewNode(&Employee{id: 1})
 
 	employee2 := tree.NewNode(&Employee{id: 2})
@@ -40,7 +44,11 @@ func buildEmployeeGraph() *tree.Tree {
 	ceo.AddChildren(employee6, employee8)
 	employee6.AddChildren(employee2, employee5, employee7)
 	employee5.AddChildren(employee4, employee3)
-	employee3.AddChildren(employee8)
+
+	if withDuplicates {
+		employee5.AddChildren(employee7)
+		employee3.AddChildren(employee8)
+	}
 
 	return tree.New(ceo)
 }
