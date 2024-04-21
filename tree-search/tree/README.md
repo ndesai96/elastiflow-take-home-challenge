@@ -2,6 +2,9 @@
 
 The tree package is designed to be a standalone package that implements a generic N-ary tree.
 
+## `CheckDuplicateIDs`
+
+The `CheckDuplicateIDs(tree *Tree)` function traverses a given tree and returns the shallowest duplicate Node ID.
 
 ## Tree
 
