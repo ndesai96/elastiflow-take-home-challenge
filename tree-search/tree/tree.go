@@ -8,7 +8,7 @@ type Tree struct {
 	root Node
 }
 
-func NewTree(root Node) *Tree {
+func New(root Node) *Tree {
 	return &Tree{
 		root: root,
 	}

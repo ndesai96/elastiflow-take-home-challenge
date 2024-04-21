@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNode_NewTree(t *testing.T) {
+func TestNode_New(t *testing.T) {
 	tests := map[string]struct {
 		root Node
 	}{
@@ -21,7 +21,7 @@ func TestNode_NewTree(t *testing.T) {
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
 
-			tree := NewTree(tt.root)
+			tree := New(tt.root)
 
 			assert.IsType(t, &Tree{}, tree)
 			assert.Equal(t, tt.root.GetID(), tree.root.GetID())
@@ -50,7 +50,7 @@ func TestNode_Traverse(t *testing.T) {
 	for name, tt := range tests {
 		t.Run(name, func(t *testing.T) {
 
-			tree := NewTree(tt.root)
+			tree := New(tt.root)
 
 			idx := 0
 			for n := range tree.Traverse() {
