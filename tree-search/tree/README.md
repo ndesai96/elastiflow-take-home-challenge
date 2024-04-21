@@ -10,7 +10,7 @@ The `CheckDuplicateIDs(tree *Tree)` function traverses a given tree and returns 
 
 ### Traversal
 
-The `Traversal()` method performs a breadth-first search (BFS) traversal of the tree and returns a channel of `NodeTraversal`. Each `NodeTraversal` contains a node and its level in the tree.
+The `Traversal()` method performs a breadth-first search (BFS) traversal of the tree and returns a channel of `NodeTraversal`. Each `NodeTraversal` contains a node and its level in the tree. Returning a channel of `NodeTraversal` allows the caller to process `NodeTraversal` concurrently with the traversal.  
 
 ### `NodeTraversal` Struct
 
