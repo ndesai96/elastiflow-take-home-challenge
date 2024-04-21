@@ -2,6 +2,17 @@
 
 The tree package is designed to be a standalone package that implements a generic N-ary tree.
 
+
+## Tree
+
+### Traversal
+
+The `Traversal()` method performs a breadth-first search (BFS) traversal of the tree and returns a channel of `NodeTraversal`. Each `NodeTraversal` contains a node and its level in the tree.
+
+### `NodeTraversal` Struct
+
+Represents a node during traversal.
+
 ## Node
 
 ### `Node` Interface
