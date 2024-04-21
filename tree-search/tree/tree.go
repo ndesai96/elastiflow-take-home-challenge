@@ -19,6 +19,7 @@ type NodeTraversal struct {
 	level int
 }
 
+// Breadth first search (BFS) traversal
 func (t *Tree) Traverse() <-chan NodeTraversal {
 	ch := make(chan NodeTraversal)
 
